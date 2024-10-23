@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Game?</title>
+    <title>Brainrot.io</title>
     <script> var exports = {}; </script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="/socket.io/socket.io.js" defer></script>
     <script src="index.js" defer></script>
     <script src="player.js" defer></script>
@@ -13,10 +14,20 @@
 </head>
 
 <body>
+    <div style="margin: 50px; width: 100%;">
+        <h3 style="text-align: center;">Mogging Leaderboard</h3>
+        <ol id="leaderboard">
+        </ol>
+    </div>
     <div id="canvas_div">
+        <h1 align="center">Brainrot.io</h1>
         <canvas width="1280" height="720">
         </canvas>
         <!-- <button id="start">Play</button> -->
+    </div>
+    <div style="margin: 50px; width: 100%; text-align: center;">
+        <h3 style="text-align: center;">Yapping Session</h3>
+        <input id="chatText" type="text" placeholder="Yap Yap Yap"><button id="YAP">YAP</button>
     </div>
 </body>
 

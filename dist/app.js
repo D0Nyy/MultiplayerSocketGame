@@ -21,14 +21,17 @@ app.get("/", (req, res) => {
 //Socket<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>
 const players = {};
 io.on("connection", (socket) => {
+    // Calculate server delay
+    socket.on("ping", (callback) => {
+        callback();
+    });
     console.log(`[${TAG}]: User ${socket.id} connected...`);
     players[socket.id] = {
-        position: {
-            x: 100,
-            y: 100
-        },
+        x: 100,
+        y: 100,
         color: "white",
-        sequenceNumber: 0
+        sequenceNumber: 0,
+        username: socket.handshake.query.username
     };
     console.log(players);
     io.emit("updatePlayers", players);
@@ -43,16 +46,16 @@ io.on("connection", (socket) => {
         players[socket.id].sequenceNumber = sequenceNumber;
         switch (keycode) {
             case "KeyW":
-                players[socket.id].position.y -= 10;
+                players[socket.id].y -= 10;
                 break;
             case "KeyS":
-                players[socket.id].position.y += 10;
+                players[socket.id].y += 10;
                 break;
             case "KeyD":
-                players[socket.id].position.x += 10;
+                players[socket.id].x += 10;
                 break;
             case "KeyA":
-                players[socket.id].position.x -= 10;
+                players[socket.id].x -= 10;
                 break;
         }
         //io.emit("updatePlayers", players);  no good since it runs for EVERY key pressed for EVERY user

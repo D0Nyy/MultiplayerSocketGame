@@ -9,7 +9,7 @@ export interface ServerToClientEvents {
 
 export interface ClientToServerEvents {
     keydown: ({ keycode: string, sequenceNumber: number }) => void;
-    hello: () => void;
+    ping: (callback: () => void) => void;
 }
 
 export interface InterServerEvents {
